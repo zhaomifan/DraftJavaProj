@@ -2,7 +2,7 @@ server:
   port: 8081
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/crs_bs_local
+    url: jdbc:mysql://localhost:3306/test_db
     username: root
     password: root
     type: com.zaxxer.hikari.HikariDataSource

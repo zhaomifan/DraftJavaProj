@@ -17,8 +17,8 @@ import java.util.List;
  * @date 17:26 2025/9/15
  */
 @RestController
-@RequestMapping("/json")
-public class JsonController {
+@RequestMapping("/user")
+public class UserController {
     @Resource
     UserService userService;
 
@@ -29,11 +29,8 @@ public class JsonController {
         return "保存成功！";
     }
 
-    @RequestMapping("/find")
-    public List<User> find(@RequestBody User user) {
-        LambdaQueryWrapper<User> queryWrapper = new LambdaQueryWrapper<>();
-        queryWrapper.apply("user_info->>$.phone like {}", user.getName());
-        queryWrapper.eq(User::getUserInfo, user.getId());
-        return userService.list(queryWrapper);
+    @RequestMapping("/list")
+    public List<User> list(@RequestBody User user) {
+        return userService.lambdaQuery().lt(User::getName, user.getName()).list();
     }
 }
